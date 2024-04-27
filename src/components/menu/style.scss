@@ -1,0 +1,95 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-width: 100vw;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 1000;
+  color: $textLight;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  #menuHead {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8vw;
+
+    #menuClose {
+      right: 4vw;
+
+      svg {
+        $size: 30px;
+        width: $size;
+        height: $size;
+        color: $light;
+      }
+    }
+
+    #lLogo {
+      position: relative;
+      width: 40%;
+      height: 40px;
+
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    font-family: $playfare;
+    font-size: 2rem;
+    font-weight: normal;
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #menu {
+    #menuHead {
+      #lLogo {
+        width: 20%;
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #menu {
+    #menuHead {
+      #lLogo {
+        width: 10%;
+      }
+    }
+
+    .menu-items {
+      a {
+        position: relative;
+        transition: color 200ms ease-in-out;
+
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
+  }
+}
