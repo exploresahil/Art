@@ -29,6 +29,10 @@ export interface brandType extends commonAttributes {
 export interface heroType extends commonAttributes {
   headline: string;
   subHeadline: string;
+  nameShop: string;
+  headlineShop: string;
+  subHeadlineShop: string;
+  imageShop: string;
 }
 export interface socialType extends commonAttributes {
   instagram: string;
@@ -40,6 +44,7 @@ export interface categoryType extends commonAttributes {
   title: string;
   slug: string;
   image: string;
+  products: productsType[];
 }
 
 export interface productsType extends commonAttributes {

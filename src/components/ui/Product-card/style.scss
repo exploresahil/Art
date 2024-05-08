@@ -1,0 +1,51 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#productCard {
+  .img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    font-family: $roboto;
+    overflow: hidden;
+    border-radius: 10px;
+
+    img {
+      object-fit: cover;
+    }
+  }
+  h2 {
+    font-family: $roboto;
+    font-size: 1.2rem;
+    padding: 10px 0;
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #productCard {
+    h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #productCard {
+    .img-container {
+      transition: border-radius 100ms ease-in-out;
+    }
+
+    &:hover {
+      .img-container {
+        border-radius: 60px;
+      }
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}

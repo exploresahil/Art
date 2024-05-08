@@ -1,0 +1,69 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#productHero {
+  //margin-top: 80px;
+  width: 100vw;
+  max-width: 100%;
+  height: calc(50vh + 80px);
+  height: calc(50svh + 80px);
+  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: clip;
+  border-radius: 0 0 100px 100px;
+  background-color: $dark;
+  color: $light;
+
+  img {
+    object-fit: cover;
+    opacity: 0.4;
+  }
+
+  .title-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: normal;
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #productHero {
+    .title-container {
+      gap: 10px;
+      h1 {
+        font-size: 5rem;
+      }
+
+      p {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #productHero {
+    .title-container {
+      gap: 10px;
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}

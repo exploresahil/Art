@@ -1,0 +1,61 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#category {
+  width: 100vw;
+  max-width: 100%;
+  padding: 20px 4vw;
+
+  .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+  }
+
+  .buttons-container {
+    width: 100%;
+    overflow-x: scroll;
+    padding: 20px 0;
+
+    &::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $lOrange;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $blue;
+      border-radius: 100px;
+    }
+
+    scrollbar-width: 5px;
+    scrollbar-color: $blue $lOrange;
+
+    .all-buttons {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 820px) {
+  #category {
+    .title-container {
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  #category {
+    padding: 20px 10vw;
+  }
+}

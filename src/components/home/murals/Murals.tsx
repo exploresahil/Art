@@ -20,7 +20,7 @@ const Murals = () => {
     return () => {};
   }, []);
 
-  console.log("mural->", data);
+  //console.log("mural->", data);
 
   return (
     data && (

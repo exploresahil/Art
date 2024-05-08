@@ -1,6 +1,11 @@
 import { createClient, groq } from "next-sanity";
 import clientConfig from "./lib/client";
-import { brandType, categoryType, muralHomeType } from "./types/allTypes";
+import {
+  brandType,
+  categoryType,
+  muralHomeType,
+  productsType,
+} from "./types/allTypes";
 import { heroType } from "./types/allTypes";
 import { socialType } from "./types/allTypes";
 
@@ -46,7 +51,10 @@ export async function getHero(): Promise<heroType> {
       name,
       headline,
       subHeadline,
-    
+      nameShop,
+      headlineShop,
+      subHeadlineShop,
+      "imageShop": imageShop.asset->url,
     }`
   );
 }
@@ -98,4 +106,28 @@ export async function getMuralHome(): Promise<muralHomeType> {
       "image": image.asset->url,
     }`
   );
+}
+
+//*--------->
+//*-------------------> Products by Category
+//*--------->
+
+export async function getProductsByCategory(): Promise<categoryType[]> {
+  return createClient(clientConfig).fetch(groq`*[_type == "productCategory"] {
+    _id,
+    _createdAt,
+    title,
+    "slug": slug.current,
+    "image": image.asset->url,
+    "products": *[_type == "products" && references(^._id)] {
+      name,
+      "slug": slug.current,
+      "images": images[] {
+        "_id": asset->_id,
+        "url": asset->url
+      },
+      description,
+      isAvailable
+    }
+  }`);
 }
