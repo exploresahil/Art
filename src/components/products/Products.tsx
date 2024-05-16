@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Category from "./category/Category";
 import { categoryType, productsType } from "@/sanity/types/allTypes";
 import { getProductsByCategory } from "@/sanity/sanity-utils";
@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
 import { useAppSelector } from "@/src/lib/hook";
 
-const Products = () => {
+const ProductsContent = () => {
   const [data, setData] = useState<categoryType[]>();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [filteredProducts, setFilteredProducts] = useState<productsType[]>([]);
@@ -71,6 +71,14 @@ const Products = () => {
       />
       <AllProducts products={filteredProducts} loading={loading} />
     </section>
+  );
+};
+
+const Products = () => {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <ProductsContent />
+    </Suspense>
   );
 };
 

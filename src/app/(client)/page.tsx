@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <Loading /> */}
+      <Loading />
       <Hero />
       <Featured />
       <Murals />
