@@ -82,6 +82,25 @@
             height: 100%;
             object-fit: cover;
             border-radius: 5px;
+
+            background: linear-gradient(
+              90deg,
+              rgba(0, 61, 203, 0.5),
+              #003ecb,
+              rgba(0, 61, 203, 0.5)
+            );
+            background-size: 200%;
+            animation: loadingBtn 1s infinite linear;
+            border-radius: 5px;
+
+            @keyframes loadingBtn {
+              from {
+                background-position: -100% 0;
+              }
+              to {
+                background-position: 100% 0;
+              }
+            }
           }
         }
 
