@@ -8,6 +8,23 @@ const initialState: BrandState = {
     _id: "",
     cratedAt: new Date(),
     name: "",
+    logoMark: "",
+    headerImage: "",
+    darkImage: "",
+    lightImage: "",
+
+    backgroundColor: "",
+    primaryText: "",
+    secondaryText: "",
+    lightText: "",
+    buttonBackground: "",
+    buttonText: "",
+    buttonHoverBackground: "",
+    buttonHoverText: "",
+    footerBackground: "",
+    menuBackgroundColor: "",
+    socialBackground: "",
+    socialColor: "",
   },
 };
 

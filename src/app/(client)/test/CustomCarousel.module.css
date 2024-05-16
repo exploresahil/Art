@@ -1,0 +1,35 @@
+/* components/CustomCarousel.module.css */
+.carouselContainer {
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+
+.slide {
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.nextArrow,
+.prevArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    cursor: pointer;
+
+
+}
+
+.nextArrow {
+    right: 10px;
+}
+
+.prevArrow {
+    left: 10px;
+}

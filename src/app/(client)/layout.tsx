@@ -3,6 +3,7 @@ import "./scss/globals.scss";
 import Header from "@/src/components/header/Header";
 import StoreProvider from "@/src/Providers/ReduxProvider";
 import { useSelector } from "react-redux";
+import Footer from "@/src/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Brush.Ish | Artist",
@@ -19,7 +20,9 @@ export default function RootLayout({
       <body>
         <StoreProvider>
           <Header />
+
           <main>{children}</main>
+          <Footer />
         </StoreProvider>
       </body>
     </html>

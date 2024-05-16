@@ -1,20 +1,24 @@
 @use "@/src/app/(client)/scss/variables" as *;
 
-#productHero {
+#otherHero {
   //margin-top: 80px;
-  width: 100vw;
-  max-width: 100%;
-  height: calc(50vh + 80px);
-  height: calc(50svh + 80px);
+
   padding-top: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: clip;
-  border-radius: 0 0 100px 100px;
-  background-color: $dark;
-  color: $light;
+
+  .hero-container {
+    width: 100vw;
+    max-width: 100%;
+    height: calc(50vh + 80px);
+    height: calc(50svh + 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: clip;
+    border-radius: 0 0 100px 100px;
+    background-color: $dark;
+    color: $light;
+  }
 
   img {
     object-fit: cover;
@@ -37,10 +41,31 @@
   }
 }
 
+.heroLoading {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 61, 203, 0.5),
+    #003ecb,
+    rgba(0, 61, 203, 0.5)
+  );
+  background-size: 200%;
+  animation: loadingBtn 1s infinite linear;
+  border-radius: 5px;
+
+  @keyframes loadingBtn {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+}
+
 //*---------->> Tablet
 
 @media screen and (min-width: 820px) {
-  #productHero {
+  #otherHero {
     .title-container {
       gap: 10px;
       h1 {
@@ -57,7 +82,7 @@
 //*---------->> desktop
 
 @media screen and (min-width: 1025px) {
-  #productHero {
+  #otherHero {
     .title-container {
       gap: 10px;
 

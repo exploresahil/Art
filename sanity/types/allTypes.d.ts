@@ -56,11 +56,18 @@ export interface productsType extends commonAttributes {
     url: string;
   }[];
   description: PortableTextBlock[];
+  price: number;
   isAvailable: boolean;
+  quantity: number;
 }
 
 export interface muralHomeType extends commonAttributes {
   title: string;
   slug: string;
   image: string;
+}
+
+export interface footerType extends commonAttributes {
+  name: string;
+  bgImage: string;
 }

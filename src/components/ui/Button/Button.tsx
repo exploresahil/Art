@@ -4,10 +4,11 @@ import { CSSProperties, MouseEventHandler, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
 }
 
-const Button = ({ children, onClick }: Props) => {
+const Button = ({ children, onClick, className }: Props) => {
   const brand = useAppSelector(selectBrand);
 
   //*---> Base styles
@@ -49,6 +50,7 @@ const Button = ({ children, onClick }: Props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
+      className={className}
     >
       {children}
     </button>

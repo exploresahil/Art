@@ -13,6 +13,9 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
+import useCart from "@/src/hooks/cart";
+import Cart from "../menu/cart/Cart";
+import { AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [data, setData] = useState<brandType>();
@@ -20,6 +23,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLHeadElement | null>(null);
   const brand = useAppSelector(selectBrand);
+  const [cartOpen, setCartOpen] = useState<boolean>(false);
+
   //console.log("brand", brand);
 
   //*----------> Data Fetching
@@ -79,7 +84,7 @@ const Header = () => {
     <>
       <header
         id="header"
-        className={isScrolled && !menuOpen ? "scrolled" : ""}
+        className={isScrolled && !menuOpen && !cartOpen ? "scrolled" : ""}
         ref={headerRef}
         style={{
           backgroundColor:
@@ -98,10 +103,18 @@ const Header = () => {
               />
             )}
           </Link>
-          <button id="cart">
+          <button
+            id="cartBtn"
+            onClick={() => {
+              setCartOpen(true);
+            }}
+          >
             <IoBagHandle />
           </button>
         </div>
+        <AnimatePresence mode="wait">
+          {cartOpen && <Cart setCartOpen={setCartOpen} cartOpen={cartOpen} />}
+        </AnimatePresence>
       </header>
     </>
   );

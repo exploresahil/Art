@@ -3,19 +3,26 @@ import "./style.scss";
 import ProductCard from "../../ui/Product-card/ProductCard";
 
 interface CategoryProps {
-  products: productsType[] | undefined; // Define props interface
+  products: productsType[] | undefined;
+  loading: boolean;
 }
 
-const AllProducts = ({ products }: CategoryProps) => {
+const AllProducts = ({ products, loading }: CategoryProps) => {
   //console.log("products->", products);
+
+  if (loading) {
+    return <div id="allProducts">Loading...</div>;
+  }
+
+  if (products?.length == 0) {
+    return <div id="allProducts">No Products found in selected category</div>;
+  }
 
   return (
     <div id="allProducts">
-      {products?.length !== 0 ? (
-        products?.map((item, i) => <ProductCard key={i} item={item} />)
-      ) : (
-        <div>No Products found in selected category</div>
-      )}
+      {products?.map((item, i) => (
+        <ProductCard key={i} item={item} />
+      ))}
     </div>
   );
 };

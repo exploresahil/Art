@@ -21,12 +21,12 @@ export default function Home() {
     }
 
     requestAnimationFrame(raf);
-    dispatch(load({}));
+    dispatch(load());
   }, []);
 
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
       <Hero />
       <Featured />
       <Murals />

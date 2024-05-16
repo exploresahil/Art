@@ -3,6 +3,7 @@ import clientConfig from "./lib/client";
 import {
   brandType,
   categoryType,
+  footerType,
   muralHomeType,
   productsType,
 } from "./types/allTypes";
@@ -35,6 +36,21 @@ export async function getBrand(): Promise<brandType> {
       "menuBackgroundColor": menuBackgroundColor.hex,
       "socialBackground": socialBackground.hex,
       "socialColor": socialColor.hex,
+    }`
+  );
+}
+
+//*--------->
+//*-------------------> Footer
+//*--------->
+
+export async function getFooter(): Promise<footerType> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "footer"][0] {
+      _id,
+      _createdAt,
+      name,
+      "bgImage": bgImage.asset->url
     }`
   );
 }
@@ -127,7 +143,67 @@ export async function getProductsByCategory(): Promise<categoryType[]> {
         "url": asset->url
       },
       description,
+      price,
       isAvailable
     }
   }`);
+}
+
+//*--------->
+//*-------------------> Products, if isAvailable
+//*--------->
+
+export async function getProducts(): Promise<productsType[]> {
+  return createClient(clientConfig)
+    .fetch(groq`*[_type == "products" && isAvailable == true] {
+      name,
+      "slug": slug.current,
+      "images": images[] {
+        "_id": asset->_id,
+        "url": asset->url
+      },
+      description,
+      price,
+      isAvailable
+    }`);
+}
+
+//*--------->
+//*-------------------> Products for cart
+//*--------->
+
+export async function getCartProducts(): Promise<productsType[]> {
+  return createClient(clientConfig).fetch(groq`*[_type == "products"] {
+      name,
+      "slug": slug.current,
+      "images": images[] {
+        "_id": asset->_id,
+        "url": asset->url
+      },
+      description,
+      price,
+      isAvailable
+    }`);
+}
+
+//*--------->
+//*-------------------> Product by Slug
+//*--------->
+
+export async function getProductsBySlug(slug: string): Promise<productsType> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "products" && isAvailable == true && slug.current == $slug][0] {
+    name,
+    "slug": slug.current,
+    "images": images[] {
+      "_id": asset->_id,
+      "url": asset->url
+    },
+    description,
+    price,
+    isAvailable,
+    quantity,
+  }`,
+    { slug }
+  );
 }
