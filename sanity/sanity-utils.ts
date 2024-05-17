@@ -71,6 +71,10 @@ export async function getHero(): Promise<heroType> {
       headlineShop,
       subHeadlineShop,
       "imageShop": imageShop.asset->url,
+      nameWorkshop,
+      headlineWorkshop,
+      subHeadlineWorkshop,
+      "imageWorkshop":imageWorkshop.asset->url,
     }`
   );
 }

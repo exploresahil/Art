@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import OtherHero from "../../ui/OtherHero/OtherHero";
 import { heroType } from "@/sanity/types/allTypes";
 import { getHero } from "@/sanity/sanity-utils";
-import OtherHero from "../../ui/OtherHero/OtherHero";
 
 const Hero = () => {
   const [data, setData] = useState<heroType>();
@@ -19,17 +19,16 @@ const Hero = () => {
     fetchData();
   }, []);
 
-  //console.log("heroData->", data);
+  console.log("heroData->", data);
 
   const names = {
-    loadingName: "Shop",
-    image: `${data?.imageShop}`,
-    headline: `${data?.nameShop}`,
-    subHeadline: `${data?.subHeadlineShop}`,
+    loadingName: "Workshop",
+    image: `${data?.imageWorkshop}`,
+    headline: `${data?.nameWorkshop}`,
+    subHeadline: `${data?.subHeadlineWorkshop}`,
   };
 
   //console.log("names->", names);
-
   return (
     <>
       <OtherHero data={data} names={names} />

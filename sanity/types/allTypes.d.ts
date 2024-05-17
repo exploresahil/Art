@@ -33,6 +33,11 @@ export interface heroType extends commonAttributes {
   headlineShop: string;
   subHeadlineShop: string;
   imageShop: string;
+
+  nameWorkshop: string;
+  headlineWorkshop: string;
+  subHeadlineWorkshop: string;
+  imageWorkshop: string;
 }
 export interface socialType extends commonAttributes {
   instagram: string;

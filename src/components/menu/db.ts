@@ -10,7 +10,7 @@ export const links = [
     target: "_self",
   },
   {
-    link: "/workshop",
+    link: "/workshops",
     name: "Workshops",
     target: "_self",
   },

@@ -13,6 +13,10 @@ const heroSchema = defineType({
       name: "shop",
       title: "Shop",
     },
+    {
+      name: "workshop",
+      title: "WorkShop",
+    },
   ],
   fields: [
     defineField({
@@ -59,6 +63,34 @@ const heroSchema = defineType({
     }),
     defineField({
       name: "imageShop",
+      title: "Shop Image",
+      type: "image",
+      description: "Upload Image for Product Category",
+      group: "shop",
+    }),
+    defineField({
+      name: "nameWorkshop",
+      type: "string",
+      title: "Workshop Name",
+      validation: (Rule: any) => Rule.required(),
+      group: "shop",
+    }),
+    defineField({
+      name: "headlineWorkshop",
+      type: "string",
+      title: "Shop Headline",
+      validation: (Rule: any) => Rule.required(),
+      group: "shop",
+    }),
+    defineField({
+      name: "subHeadlineWorkshop",
+      type: "string",
+      title: "Shop Sub-Headline",
+      validation: (Rule: any) => Rule.required(),
+      group: "shop",
+    }),
+    defineField({
+      name: "imageWorkshop",
       title: "Shop Image",
       type: "image",
       description: "Upload Image for Product Category",

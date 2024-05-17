@@ -9,9 +9,15 @@ import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
 
 interface Props {
   data?: heroType;
+  names?: {
+    loadingName: string;
+    image: string;
+    headline: string;
+    subHeadline: string;
+  };
 }
 
-const OtherHero = ({ data }: Props) => {
+const OtherHero = ({ data, names }: Props) => {
   const [loading, setLoading] = useState<boolean>(true);
   const brand = useAppSelector(selectBrand);
 
@@ -32,7 +38,7 @@ const OtherHero = ({ data }: Props) => {
           <div className="title-container">
             <h1>
               <div className="title-container">
-                <h1>Shop</h1>
+                <h1>{names?.loadingName}</h1>
                 <p>Loading...</p>
               </div>
             </h1>
@@ -51,17 +57,12 @@ const OtherHero = ({ data }: Props) => {
       }}
     >
       <div className="hero-container">
-        {data?.imageShop && (
-          <Image
-            src={data?.imageShop}
-            alt=""
-            fill
-            sizes={ImageSize.bannerSizes}
-          />
+        {data && names && (
+          <Image src={names.image} alt="" fill sizes={ImageSize.bannerSizes} />
         )}
         <div className="title-container">
-          <h1>{data?.headlineShop}</h1>
-          <p>{data?.subHeadlineShop}</p>
+          <h1>{names?.headline}</h1>
+          <p>{names?.subHeadline}</p>
         </div>
       </div>
     </section>
