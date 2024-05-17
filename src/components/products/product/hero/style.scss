@@ -1,0 +1,199 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#productHero {
+  width: 100vw;
+  max-width: 100%;
+  padding: calc(80px + 4vw) 4vw 4vw 4vw;
+
+  .product-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .img-container {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: $light;
+
+      img {
+        object-fit: cover;
+        z-index: 1;
+
+        background: linear-gradient(
+          90deg,
+          rgba(0, 61, 203, 0.5),
+          #003ecb,
+          rgba(0, 61, 203, 0.5)
+        );
+        background-size: 200%;
+        animation: loadingBtn 1s infinite linear;
+        border-radius: 5px;
+
+        @keyframes loadingBtn {
+          from {
+            background-position: -100% 0;
+          }
+          to {
+            background-position: 100% 0;
+          }
+        }
+      }
+
+      .nav-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 4vw;
+
+        button {
+          background-color: rgba(0, 61, 203, 0.75);
+          border: none;
+          border-radius: 100px;
+          width: 30px;
+          height: 30px;
+          display: grid;
+          place-content: center;
+          cursor: pointer;
+
+          svg {
+            color: $light;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .title-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .quantity-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        button {
+          width: 20px;
+          height: 20px;
+          border-radius: 5px;
+          display: grid;
+          place-content: center;
+
+          svg {
+            font-size: 0.9rem;
+          }
+        }
+
+        p {
+          width: 40px;
+          height: 20px;
+          border: 1px solid $dark;
+          border-radius: 5px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          display: grid;
+          place-content: center;
+        }
+      }
+
+      h2 {
+        font-family: $roboto;
+      }
+
+      p {
+        font-weight: bold;
+        color: $blue;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+
+        button {
+          padding: 10px 20px;
+          border-radius: 5px;
+
+          &:nth-of-type(1) {
+            grid-column: 1 / 3;
+          }
+
+          &:nth-of-type(2) {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #productHero {
+    padding: calc(80px + 2vw) 10vw 2vw 10vw;
+
+    .product-container {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 100px;
+
+      .img-container {
+        width: auto;
+        height: 80vh;
+
+        .nav-buttons {
+          padding: 0 1vw;
+        }
+      }
+
+      .title-container {
+        justify-content: end;
+        width: 100%;
+
+        .img-container {
+          width: 40%;
+          height: auto;
+          cursor: pointer;
+
+          img {
+            background: linear-gradient(
+              90deg,
+              rgba(0, 61, 203, 0.5),
+              #003ecb,
+              rgba(0, 61, 203, 0.5)
+            );
+            background-size: 200%;
+            animation: loadingBtn 1s infinite linear;
+            border-radius: 5px;
+
+            @keyframes loadingBtn {
+              from {
+                background-position: -100% 0;
+              }
+              to {
+                background-position: 100% 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

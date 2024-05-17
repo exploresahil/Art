@@ -1,0 +1,71 @@
+"use client";
+import Image from "next/image";
+import "./style.scss";
+import { heroType } from "@/sanity/types/allTypes";
+import { useEffect, useState } from "react";
+import ImageSize from "@/src/utils/image-utils";
+import { useAppSelector } from "@/src/lib/hook";
+import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
+
+interface Props {
+  data?: heroType;
+}
+
+const OtherHero = ({ data }: Props) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const brand = useAppSelector(selectBrand);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return (
+      <section
+        id="otherHero"
+        style={{
+          backgroundColor:
+            brand && brand.backgroundColor ? brand.backgroundColor : "#ffffff",
+        }}
+      >
+        <div className="hero-container heroLoading">
+          <div className="title-container">
+            <h1>
+              <div className="title-container">
+                <h1>Shop</h1>
+                <p>Loading...</p>
+              </div>
+            </h1>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section
+      id="otherHero"
+      style={{
+        backgroundColor:
+          brand && brand.backgroundColor ? brand.backgroundColor : "#ffffff",
+      }}
+    >
+      <div className="hero-container">
+        {data?.imageShop && (
+          <Image
+            src={data?.imageShop}
+            alt=""
+            fill
+            sizes={ImageSize.bannerSizes}
+          />
+        )}
+        <div className="title-container">
+          <h1>{data?.headlineShop}</h1>
+          <p>{data?.subHeadlineShop}</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default OtherHero;

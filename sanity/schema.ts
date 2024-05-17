@@ -5,10 +5,12 @@ import brandSchema from "./schemas/brand-schema";
 import categorySchema from "./schemas/category-schema";
 import productsSchema from "./schemas/product-schema";
 import muralSchema from "./schemas/mural-schema";
+import footerSchema from "./schemas/footer-schema";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     brandSchema,
+    footerSchema,
     heroSchema,
     socialSchema,
     categorySchema,

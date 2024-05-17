@@ -21,7 +21,7 @@ export default function Home() {
     }
 
     requestAnimationFrame(raf);
-    dispatch(load({}));
+    dispatch(load());
   }, []);
 
   return (

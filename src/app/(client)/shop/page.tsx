@@ -1,5 +1,13 @@
+import Products from "@/src/components/products/Products";
+import Hero from "@/src/components/products/hero/Hero";
+
 const page = () => {
-  return <div>Shop</div>;
+  return (
+    <>
+      <Hero />
+      <Products />
+    </>
+  );
 };
 
 export default page;

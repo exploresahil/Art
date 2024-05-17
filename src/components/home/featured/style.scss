@@ -4,13 +4,11 @@
   max-width: 100vw;
   width: 100%;
   height: 100vh;
-  padding: 0 4vw;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 50px;
 
   font-family: $playfare;
@@ -19,64 +17,61 @@
 
   .category-slider {
     width: 100%;
+    position: relative;
 
-    .mySwiper {
-      width: 100%;
+    .slide {
+      padding: 0 4vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      .swiper-button-prev::after,
-      .swiper-button-next::after {
-        color: $blue;
-        font-size: 1rem;
-        font-weight: bold;
-      }
-
-      .swiper-button-next,
-      .swiper-button-prev {
-        background-color: rgba(255, 255, 255, 0.5);
-        width: 30px;
-        height: 30px;
+      .slide-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        border-radius: 100px;
-      }
+        flex-direction: column;
+        gap: 10px;
+        cursor: pointer;
 
-      .swiper-button-prev {
-        left: 5vw;
-      }
-
-      .swiper-button-next {
-        right: 5vw;
-      }
-
-      .swiperSlide-card {
-        width: 100%;
-        padding: 8px;
-
-        .feat-card {
-          box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.5);
-          border-radius: 10px;
+        .img-container {
+          aspect-ratio: 4 / 5;
           overflow: hidden;
-          //border: 1px solid black;
+          position: relative;
+          border-radius: 5px;
 
-          .img-container {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            position: relative;
-          }
-
-          .title-container {
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: $roboto;
-            font-weight: normal;
-            font-size: 1.2rem;
+          img {
+            object-fit: cover;
           }
         }
+
+        h3 {
+          text-align: center;
+          font-family: $roboto;
+        }
       }
+    }
+
+    .nextArrow,
+    .prevArrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      cursor: pointer;
+      width: auto;
+      height: auto;
+
+      &::before {
+        color: $blue;
+        opacity: 1;
+        font-size: 2rem;
+      }
+    }
+
+    .nextArrow {
+      right: calc(4vw + 10px);
+    }
+
+    .prevArrow {
+      left: calc(4vw + 10px);
     }
   }
 }
@@ -89,17 +84,30 @@
     padding: 0 4vw;
 
     .category-slider {
-      .mySwiper {
-        .swiper-button-prev {
-          left: 2vw;
-        }
+      .slide {
+        padding: 0 2vw;
 
-        .swiper-button-next {
-          right: 2vw;
+        .slide-container {
+          h3 {
+            font-size: 1.2rem;
+          }
         }
+      }
 
-        .swiperSlide-card {
-          padding: 8px;
+      .nextArrow {
+        right: -20px;
+      }
+
+      .prevArrow {
+        left: -20px;
+      }
+
+      .nextArrow,
+      .prevArrow {
+        top: 45%;
+
+        &::before {
+          font-size: 1.4rem;
         }
       }
     }
@@ -118,14 +126,9 @@
     }
 
     .category-slider {
-      .mySwiper {
-        .swiper-button-prev {
-          left: 2vw;
-        }
-
-        .swiper-button-next {
-          right: 2vw;
-        }
+      .nextArrow,
+      .prevArrow {
+        top: 50%;
       }
     }
   }

@@ -54,6 +54,7 @@ const Hero = () => {
 
   //console.log("heroData->", data);
   //console.log("socialData->", social);
+
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(

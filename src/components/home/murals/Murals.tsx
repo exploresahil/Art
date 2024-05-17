@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import "./style.scss";
-import ImageSize from "@/utils/image-utils";
 import { useEffect, useState } from "react";
 import { muralHomeType } from "@/sanity/types/allTypes";
 import { getMuralHome } from "@/sanity/sanity-utils";
 import LinkButton from "../../ui/LinkButton/LinkButton";
+import ImageSize from "@/src/utils/image-utils";
 
 const Murals = () => {
   const [data, setData] = useState<muralHomeType>();
@@ -20,7 +20,7 @@ const Murals = () => {
     return () => {};
   }, []);
 
-  console.log("mural->", data);
+  //console.log("mural->", data);
 
   return (
     data && (

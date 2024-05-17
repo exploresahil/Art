@@ -60,11 +60,24 @@ const productsSchema = {
       description: "Enter description of the product",
     }),
     defineField({
+      name: "price",
+      title: "Price",
+      type: "number",
+      validation: (val) => val.required(),
+    }),
+    defineField({
       name: "isAvailable",
       title: "Is Available",
       type: "boolean",
       description: "Select true if this product is Available, false otherwise",
       initialValue: false,
+    }),
+    defineField({
+      name: "quantity",
+      title: "Quantity",
+      type: "number",
+      description:
+        "Enter total quantity of item or leave blank if only one item.",
     }),
   ],
 };
