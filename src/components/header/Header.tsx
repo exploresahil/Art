@@ -111,7 +111,9 @@ const Header = () => {
             }}
           >
             <IoBagHandle />
-            {CardData.length != 0 ? <div>{CardData.length}</div> : null}
+            {CardData.length != 0 ? (
+              <div id="cartLength">{CardData.length}</div>
+            ) : null}
           </button>
         </div>
         <AnimatePresence mode="wait">

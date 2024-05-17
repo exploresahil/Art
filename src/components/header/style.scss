@@ -41,6 +41,25 @@
     }
 
     #cartBtn {
+      position: relative;
+
+      #cartLength {
+        position: absolute;
+        background-color: rgba(0, 61, 203, 0.75);
+
+        width: 17px;
+
+        aspect-ratio: 1 / 1;
+        font-size: 0.6rem;
+        display: grid;
+        place-content: center;
+        font-weight: bold;
+        color: $light;
+        border-radius: 100px;
+        right: 0;
+        top: 0;
+      }
+
       svg {
         $size: 30px;
         width: $size;
