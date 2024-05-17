@@ -24,8 +24,20 @@ const ProductHero = ({ data }: Props) => {
   //console.log("data->", data);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(1);
   const brand = useAppSelector(selectBrand);
-  const [quantity, setQuantity] = useState<number>(1);
+
+  const incCount = () => {
+    if (data && count < data.quantity) {
+      setCount(count + 1);
+    }
+  };
+
+  const decCount = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -92,25 +104,11 @@ const ProductHero = ({ data }: Props) => {
             <p>{data?.price && `₹${data.price}`}</p>
             {data && data.quantity && (
               <div className="quantity-container">
-                <Button
-                  onClick={() => {
-                    setQuantity((prevQuantity) =>
-                      prevQuantity > 1 ? prevQuantity - 1 : prevQuantity
-                    );
-                  }}
-                >
+                <Button onClick={decCount}>
                   <AiOutlineMinus />
                 </Button>
-                <p>{quantity}</p>
-                <Button
-                  onClick={() => {
-                    setQuantity((prevQuantity) =>
-                      prevQuantity < data?.quantity
-                        ? prevQuantity + 1
-                        : prevQuantity
-                    );
-                  }}
-                >
+                <p>{count}</p>
+                <Button onClick={incCount}>
                   <AiOutlinePlus />
                 </Button>
               </div>
@@ -183,25 +181,11 @@ const ProductHero = ({ data }: Props) => {
             <p>{data?.price && `₹${data.price}`}</p>
             {data && data.quantity && (
               <div className="quantity-container">
-                <Button
-                  onClick={() => {
-                    setQuantity((prevQuantity) =>
-                      prevQuantity > 1 ? prevQuantity - 1 : prevQuantity
-                    );
-                  }}
-                >
+                <Button onClick={decCount}>
                   <AiOutlineMinus />
                 </Button>
-                <p>{quantity}</p>
-                <Button
-                  onClick={() => {
-                    setQuantity((prevQuantity) =>
-                      prevQuantity < data?.quantity
-                        ? prevQuantity + 1
-                        : prevQuantity
-                    );
-                  }}
-                >
+                <p>{count}</p>
+                <Button onClick={incCount}>
                   <AiOutlinePlus />
                 </Button>
               </div>
