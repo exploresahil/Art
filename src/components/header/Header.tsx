@@ -13,9 +13,10 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
-import useCart from "@/src/hooks/cart";
+// import useCart from "@/src/hooks/cart";
 import Cart from "../menu/cart/Cart";
 import { AnimatePresence } from "framer-motion";
+import { GetCart } from "@/src/lib/reducer/CardSlice.reducer";
 
 const Header = () => {
   const [data, setData] = useState<brandType>();
@@ -24,7 +25,7 @@ const Header = () => {
   const headerRef = useRef<HTMLHeadElement | null>(null);
   const brand = useAppSelector(selectBrand);
   const [cartOpen, setCartOpen] = useState<boolean>(false);
-
+  const CardData = useAppSelector(GetCart);
   //console.log("brand", brand);
 
   //*----------> Data Fetching
@@ -110,6 +111,7 @@ const Header = () => {
             }}
           >
             <IoBagHandle />
+            {CardData.length != 0 ? <div>{CardData.length}</div> : null}
           </button>
         </div>
         <AnimatePresence mode="wait">

@@ -13,8 +13,9 @@ import Button from "@/src/components/ui/Button/Button";
 import { useMediaQuery } from "react-responsive";
 import PageLoading from "@/src/components/ui/loading/PageLoading";
 import ImageSize from "@/src/utils/image-utils";
-import { useAppSelector } from "@/src/lib/hook";
+import { useAppDispatch, useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
+import { addToCard } from "@/src/lib/reducer/CardSlice.reducer";
 
 interface Props {
   data?: productsType;
@@ -24,6 +25,7 @@ const ProductHero = ({ data }: Props) => {
   //console.log("data->", data);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const [count, setCount] = useState<number>(1);
   const brand = useAppSelector(selectBrand);
 
@@ -69,7 +71,7 @@ const ProductHero = ({ data }: Props) => {
   }
 
   if (isMounted)
-    return !isDesktopOrLaptop ? (
+    return !isDesktopOrLaptop && data ? (
       <section
         id="productHero"
         style={{
@@ -115,7 +117,16 @@ const ProductHero = ({ data }: Props) => {
             )}
             <div className="buttons">
               <Button>Buy Now</Button>
-              <Button>
+              <Button
+                onClick={() => {
+                  dispatch(
+                    addToCard({
+                      product: data,
+                      quantity: count,
+                    })
+                  );
+                }}
+              >
                 <BsFillBagPlusFill /> Cart
               </Button>
             </div>
@@ -123,82 +134,97 @@ const ProductHero = ({ data }: Props) => {
         </div>
       </section>
     ) : (
-      <section
-        id="productHero"
-        style={{
-          backgroundColor:
-            brand && brand.backgroundColor ? brand.backgroundColor : "#ffffff",
-        }}
-      >
-        <div className="product-container">
-          <div className="product-images">
-            <div className="img-container">
-              {images.length == 1 ? (
-                <Image
-                  src={images[currentIndex].url}
-                  alt="Product Image"
-                  fill
-                  sizes={ImageSize.cardSize}
-                  priority
-                  className="zoomed-image"
-                />
-              ) : (
-                <Image
-                  src={firstImageSrc}
-                  alt="Product Image"
-                  fill
-                  sizes={ImageSize.cardSize}
-                  priority
-                  className="zoomed-image"
-                />
-              )}
-              {images.length > 1 && (
-                <div className="nav-buttons">
-                  <button id="back" onClick={prevImage}>
-                    <AiOutlineArrowLeft />
-                  </button>
-                  <button id="next" onClick={nextImage}>
-                    <AiOutlineArrowRight />
-                  </button>
+      data && (
+        <section
+          id="productHero"
+          style={{
+            backgroundColor:
+              brand && brand.backgroundColor
+                ? brand.backgroundColor
+                : "#ffffff",
+          }}
+        >
+          <div className="product-container">
+            <div className="product-images">
+              <div className="img-container">
+                {images.length == 1 ? (
+                  <Image
+                    src={images[currentIndex].url}
+                    alt="Product Image"
+                    fill
+                    sizes={ImageSize.cardSize}
+                    priority
+                    className="zoomed-image"
+                  />
+                ) : (
+                  <Image
+                    src={firstImageSrc}
+                    alt="Product Image"
+                    fill
+                    sizes={ImageSize.cardSize}
+                    priority
+                    className="zoomed-image"
+                  />
+                )}
+                {images.length > 1 && (
+                  <div className="nav-buttons">
+                    <button id="back" onClick={prevImage}>
+                      <AiOutlineArrowLeft />
+                    </button>
+                    <button id="next" onClick={nextImage}>
+                      <AiOutlineArrowRight />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="title-container">
+              {data && images.length > 1 && (
+                <div className="img-container" onClick={nextImage}>
+                  <Image
+                    src={
+                      data.images[(currentIndex + 1) % data.images.length].url
+                    }
+                    alt="Product Image"
+                    fill
+                    sizes={ImageSize.cardSize}
+                    priority
+                  />
                 </div>
               )}
-            </div>
-          </div>
-          <div className="title-container">
-            {data && images.length > 1 && (
-              <div className="img-container" onClick={nextImage}>
-                <Image
-                  src={data.images[(currentIndex + 1) % data.images.length].url}
-                  alt="Product Image"
-                  fill
-                  sizes={ImageSize.cardSize}
-                  priority
-                />
-              </div>
-            )}
 
-            <h2>{data?.name}</h2>
-            <p>{data?.price && `₹${data.price}`}</p>
-            {data && data.quantity && (
-              <div className="quantity-container">
-                <Button onClick={decCount}>
-                  <AiOutlineMinus />
-                </Button>
-                <p>{count}</p>
-                <Button onClick={incCount}>
-                  <AiOutlinePlus />
+              <h2>{data?.name}</h2>
+              <p>{data?.price && `₹${data.price}`}</p>
+              {data && data.quantity && (
+                <div className="quantity-container">
+                  <Button onClick={decCount}>
+                    <AiOutlineMinus />
+                  </Button>
+                  <p>{count}</p>
+                  <Button onClick={incCount}>
+                    <AiOutlinePlus />
+                  </Button>
+                </div>
+              )}
+              <div className="buttons">
+                <Button>Buy Now</Button>
+                <Button
+                  onClick={() => {
+                    dispatch(
+                      addToCard({
+                        product: data,
+                        quantity: count,
+                      })
+                    );
+                  }}
+                >
+                  <BsFillBagPlusFill /> Cart
                 </Button>
               </div>
-            )}
-            <div className="buttons">
-              <Button>Buy Now</Button>
-              <Button>
-                <BsFillBagPlusFill /> Cart
-              </Button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )
     );
 };
 
