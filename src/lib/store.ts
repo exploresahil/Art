@@ -17,7 +17,7 @@ export const makeStore = () => {
   const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat();
+      return getDefaultMiddleware({ serializableCheck: false }).concat();
     },
   });
   return {
