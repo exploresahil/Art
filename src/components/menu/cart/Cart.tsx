@@ -23,7 +23,7 @@ import {
 } from "@/src/lib/reducer/CardSlice.reducer";
 
 interface Props {
-  setCartOpen: (value: boolean) => void;
+  setCartOpen: () => void;
   cartOpen: boolean;
 }
 
@@ -43,7 +43,10 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
 
   useEffect(() => {
     if (data) {
-      const total = data.reduce((acc, item) => acc + item.product.price, 0);
+      const total = data.reduce(
+        (acc, item) => acc + item.product.price * item.quantity,
+        0
+      );
       setTotalPrice(total);
     }
   }, [data]);
@@ -53,7 +56,7 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
       if (!e.target || !(e.target instanceof Element)) return;
 
       if (!e.target.closest("#cart")) {
-        setCartOpen(false);
+        setCartOpen();
       }
     };
 
@@ -105,7 +108,7 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
         <button
           id="cartClose"
           onClick={() => {
-            setCartOpen(false);
+            setCartOpen();
           }}
         >
           <CgClose />
@@ -114,7 +117,7 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
         <div className="cart-item-container">
           <>{!data && <p style={{ color: "white" }}>Loading...</p>}</>
 
-          {cartOpen === true &&
+          {cartOpen === true && data.length != 0 ? (
             data?.map((item, i) => (
               <div className="cart-item" key={i}>
                 <div className="img-container">
@@ -165,14 +168,17 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
                   <MdDeleteForever />
                 </button>
               </div>
-            ))}
+            ))
+          ) : (
+            <p>No product in cart</p>
+          )}
         </div>
         <div className="total-container">
           <h4>Total: ₹{totalPrice}</h4>
         </div>
         <Button
           onClick={() => {
-            setCartOpen(false);
+            setCartOpen();
           }}
           className="checkout-btn"
         >

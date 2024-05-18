@@ -88,6 +88,9 @@ export const CartSlice = createAppSlice({
         }
       }
     ),
+    toggleCartOpen: create.reducer((state) => {
+      state.value.isOpen = !state.value.isOpen;
+    }),
   }),
   selectors: {
     GetCart: (data) => data.value.items,
@@ -95,6 +98,7 @@ export const CartSlice = createAppSlice({
   },
 });
 
-export const { addToCard, removeFromCart, addQty, subQty } = CartSlice.actions;
+export const { addToCard, removeFromCart, addQty, subQty, toggleCartOpen } =
+  CartSlice.actions;
 
-export const { GetCart } = CartSlice.selectors;
+export const { GetCart, GetIsOpen } = CartSlice.selectors;

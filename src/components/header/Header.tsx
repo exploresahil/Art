@@ -11,12 +11,16 @@ import { IoBagHandle } from "react-icons/io5";
 import Menu from "../menu/Menu";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { useAppSelector } from "@/src/lib/hook";
+import { useAppDispatch, useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
 // import useCart from "@/src/hooks/cart";
 import Cart from "../menu/cart/Cart";
 import { AnimatePresence } from "framer-motion";
-import { GetCart } from "@/src/lib/reducer/CardSlice.reducer";
+import {
+  GetCart,
+  GetIsOpen,
+  toggleCartOpen,
+} from "@/src/lib/reducer/CardSlice.reducer";
 
 const Header = () => {
   const [data, setData] = useState<brandType>();
@@ -24,8 +28,10 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLHeadElement | null>(null);
   const brand = useAppSelector(selectBrand);
-  const [cartOpen, setCartOpen] = useState<boolean>(false);
+  // const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const cartOpen = useAppSelector(GetIsOpen);
   const CardData = useAppSelector(GetCart);
+  const dispatch = useAppDispatch();
   //console.log("brand", brand);
 
   //*----------> Data Fetching
@@ -107,7 +113,7 @@ const Header = () => {
           <button
             id="cartBtn"
             onClick={() => {
-              setCartOpen(true);
+              dispatch(toggleCartOpen());
             }}
           >
             <IoBagHandle />
@@ -117,7 +123,14 @@ const Header = () => {
           </button>
         </div>
         <AnimatePresence mode="wait">
-          {cartOpen && <Cart setCartOpen={setCartOpen} cartOpen={cartOpen} />}
+          {cartOpen && (
+            <Cart
+              setCartOpen={() => {
+                dispatch(toggleCartOpen());
+              }}
+              cartOpen={cartOpen}
+            />
+          )}
         </AnimatePresence>
       </header>
     </>

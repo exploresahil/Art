@@ -15,7 +15,7 @@ import PageLoading from "@/src/components/ui/loading/PageLoading";
 import ImageSize from "@/src/utils/image-utils";
 import { useAppDispatch, useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
-import { addToCard } from "@/src/lib/reducer/CardSlice.reducer";
+import { addToCard, toggleCartOpen } from "@/src/lib/reducer/CardSlice.reducer";
 
 interface Props {
   data?: productsType;
@@ -116,7 +116,19 @@ const ProductHero = ({ data }: Props) => {
               </div>
             )}
             <div className="buttons">
-              <Button>Buy Now</Button>
+              <Button
+                onClick={() => {
+                  dispatch(
+                    addToCard({
+                      product: data,
+                      quantity: count,
+                    })
+                  );
+                  dispatch(toggleCartOpen());
+                }}
+              >
+                Buy Now
+              </Button>
               <Button
                 onClick={() => {
                   dispatch(
