@@ -78,20 +78,20 @@ const heroSchema = defineType({
     defineField({
       name: "headlineWorkshop",
       type: "string",
-      title: "Shop Headline",
+      title: "Workshop Headline",
       validation: (Rule: any) => Rule.required(),
       group: "shop",
     }),
     defineField({
       name: "subHeadlineWorkshop",
       type: "string",
-      title: "Shop Sub-Headline",
+      title: "Workshop Sub-Headline",
       validation: (Rule: any) => Rule.required(),
       group: "shop",
     }),
     defineField({
       name: "imageWorkshop",
-      title: "Shop Image",
+      title: "Workshop Image",
       type: "image",
       description: "Upload Image for Product Category",
       group: "shop",

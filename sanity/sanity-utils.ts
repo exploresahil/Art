@@ -240,3 +240,31 @@ export async function getWorkshops(): Promise<workshopType[]> {
   }`
   );
 }
+
+//*--------->
+//*-------------------> Workshop by slug
+//*--------->
+
+export async function getWorkshopBySlug(slug: string): Promise<workshopType> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "workshops" && slug.current == $slug][0]{
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "bannerImage": bannerImage.asset->url,
+      dateTime,
+      quantity,
+      price,
+      description,
+      "afterWorkshop": afterWorkshop {
+        "images": images[] {
+          "_id": asset->_id,
+          "url": asset->url
+        },
+        description,
+      }
+    }`,
+    { slug }
+  );
+}

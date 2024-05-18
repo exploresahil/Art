@@ -12,7 +12,7 @@ const WorkshopCard = ({ item }: Props) => {
   //console.log("ProductCard->", item);
 
   return (
-    <Link id="productCard" href={`${item?.slug}`} title={item?.name}>
+    <Link id="productCard" href={`/workshops/${item?.slug}`} title={item?.name}>
       <div className="img-container">
         {item && (
           <Image

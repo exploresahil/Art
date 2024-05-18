@@ -138,11 +138,11 @@
   }
 }
 
-//*---------->> Tablet
+/* //*---------->> Tablet
 
 @media screen and (min-width: 820px) {
 }
-
+ */
 //*---------->> desktop
 
 @media screen and (min-width: 1025px) {
@@ -192,6 +192,17 @@
               }
             }
           }
+        }
+
+        h2 {
+          font-family: $playfare;
+          line-height: 1.1;
+          font-size: 3rem;
+          max-width: 60%;
+        }
+
+        .buttons {
+          max-width: 60%;
         }
       }
     }
