@@ -41,12 +41,15 @@ export const CartSlice = createAppSlice({
           if (v.product._id == action.payload.product._id) {
             console.log(v.quantity + action.payload.quantity, maxQty);
 
-            if (v.quantity + action.payload.quantity <= maxQty)
+            if (v.quantity + action.payload.quantity <= maxQty) {
+              alert(
+                `${action.payload.quantity}  ${action.payload.product.name} added to a cart`
+              );
               return {
                 ...v,
                 quantity: v.quantity + action.payload.quantity,
               };
-            else {
+            } else {
               alert(
                 `OUT OF STOCK [ONLY ${Math.abs(v.quantity - maxQty)} AVAILABLE]`
               );
