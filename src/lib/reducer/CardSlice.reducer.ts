@@ -26,7 +26,7 @@ export const CartSlice = createAppSlice({
         (v) => v.product._id == action.payload.product._id
       );
 
-      console.log(cart, cart.length);
+      //console.log(cart, cart.length);
 
       if (cart.length == 0) {
         alert(
@@ -36,10 +36,10 @@ export const CartSlice = createAppSlice({
         state.value.items.push(action.payload);
       } else {
         state.value.items = state.value.items.map((v) => {
-          console.log(v.product._id);
+          //console.log(v.product._id);
 
           if (v.product._id == action.payload.product._id) {
-            console.log(v.quantity + action.payload.quantity, maxQty);
+            //console.log(v.quantity + action.payload.quantity, maxQty);
 
             if (v.quantity + action.payload.quantity <= maxQty) {
               alert(
@@ -51,7 +51,9 @@ export const CartSlice = createAppSlice({
               };
             } else {
               alert(
-                `OUT OF STOCK [ONLY ${Math.abs(v.quantity - maxQty)} AVAILABLE]`
+                `OUT OF STOCK (${Math.abs(
+                  v.quantity - maxQty
+                )} Product AVAILABLE)`
               );
             }
           }
@@ -72,7 +74,9 @@ export const CartSlice = createAppSlice({
           state.value.items[action.payload.index].quantity += 1;
         else
           alert(
-            `OUT OF STOCK [ONLY ${Math.abs(value.quantity - maxQty)} AVAILABLE]`
+            `OUT OF STOCK (${Math.abs(
+              value.quantity - maxQty
+            )} Product AVAILABLE)`
           );
       }
     ),

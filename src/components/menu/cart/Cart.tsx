@@ -170,7 +170,9 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
               </div>
             ))
           ) : (
-            <p>No product in cart</p>
+            <p style={{ color: "rgba(255, 255, 255, 0.5)" }}>
+              No product in cart
+            </p>
           )}
         </div>
         <div className="total-container">

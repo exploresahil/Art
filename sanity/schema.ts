@@ -6,6 +6,7 @@ import categorySchema from "./schemas/category-schema";
 import productsSchema from "./schemas/product-schema";
 import muralSchema from "./schemas/mural-schema";
 import footerSchema from "./schemas/footer-schema";
+import workshopCategorySchema from "./schemas/workshop-category-schema";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     categorySchema,
     productsSchema,
     muralSchema,
+    workshopCategorySchema,
   ],
 };

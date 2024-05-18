@@ -220,7 +220,19 @@ const ProductHero = ({ data }: Props) => {
                 </div>
               )}
               <div className="buttons">
-                <Button>Buy Now</Button>
+                <Button
+                  onClick={() => {
+                    dispatch(
+                      addToCard({
+                        product: data,
+                        quantity: count,
+                      })
+                    );
+                    dispatch(toggleCartOpen());
+                  }}
+                >
+                  Buy Now
+                </Button>
                 <Button
                   onClick={() => {
                     dispatch(
