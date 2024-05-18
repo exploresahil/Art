@@ -30,7 +30,7 @@ export const CartSlice = createAppSlice({
 
       if (cart.length == 0) {
         alert(
-          `${action.payload.quantity}  ${action.payload.product.name} added to a cart`
+          `${action.payload.quantity}  ${action.payload.product.name} added to the cart`
         );
 
         state.value.items.push(action.payload);
@@ -43,7 +43,7 @@ export const CartSlice = createAppSlice({
 
             if (v.quantity + action.payload.quantity <= maxQty) {
               alert(
-                `${action.payload.quantity}  ${action.payload.product.name} added to a cart`
+                `${action.payload.quantity}  ${action.payload.product.name} added to the cart`
               );
               return {
                 ...v,
