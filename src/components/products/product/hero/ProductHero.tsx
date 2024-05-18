@@ -15,7 +15,11 @@ import PageLoading from "@/src/components/ui/loading/PageLoading";
 import ImageSize from "@/src/utils/image-utils";
 import { useAppDispatch, useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
-import { addToCard, toggleCartOpen } from "@/src/lib/reducer/CardSlice.reducer";
+import {
+  GetCart,
+  addToCard,
+  toggleCartOpen,
+} from "@/src/lib/reducer/CardSlice.reducer";
 
 interface Props {
   data?: productsType;
@@ -25,6 +29,7 @@ const ProductHero = ({ data }: Props) => {
   //console.log("data->", data);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const items = useAppSelector(GetCart);
   const dispatch = useAppDispatch();
   const [count, setCount] = useState<number>(1);
   const brand = useAppSelector(selectBrand);
@@ -124,7 +129,12 @@ const ProductHero = ({ data }: Props) => {
                       quantity: count,
                     })
                   );
-                  dispatch(toggleCartOpen());
+                  const prdData = items.filter(
+                    (v) => v.product._id == data._id
+                  )[0];
+                  if (!prdData) dispatch(toggleCartOpen());
+                  else if (data.quantity !== prdData.quantity)
+                    dispatch(toggleCartOpen());
                 }}
               >
                 Buy Now
@@ -228,7 +238,12 @@ const ProductHero = ({ data }: Props) => {
                         quantity: count,
                       })
                     );
-                    dispatch(toggleCartOpen());
+                    const prdData = items.filter(
+                      (v) => v.product._id == data._id
+                    )[0];
+                    if (!prdData) dispatch(toggleCartOpen());
+                    else if (data.quantity !== prdData.quantity)
+                      dispatch(toggleCartOpen());
                   }}
                 >
                   Buy Now
