@@ -15,7 +15,12 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import Button from "../../ui/Button/Button";
 import Image from "next/image";
 import ImageSize from "@/src/utils/image-utils";
-import { GetCart, removeFromCart } from "@/src/lib/reducer/CardSlice.reducer";
+import {
+  GetCart,
+  addQty,
+  removeFromCart,
+  subQty,
+} from "@/src/lib/reducer/CardSlice.reducer";
 
 interface Props {
   setCartOpen: (value: boolean) => void;
@@ -124,11 +129,29 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
                   <h2>{item.product.name}</h2>
                   <p>{item.product.price && `₹${item.product.price}`}</p>
                   <div className="qty-container">
-                    <Button>
+                    <Button
+                      onClick={() => {
+                        dispatch(
+                          subQty({
+                            index: i,
+                            qty: item.quantity,
+                          })
+                        );
+                      }}
+                    >
                       <AiOutlineMinus />
                     </Button>
                     <p>Qty: {item.quantity}</p>
-                    <Button>
+                    <Button
+                      onClick={() => {
+                        dispatch(
+                          addQty({
+                            index: i,
+                            prd: item.product,
+                          })
+                        );
+                      }}
+                    >
                       <AiOutlinePlus />
                     </Button>
                   </div>

@@ -10,9 +10,9 @@ export interface Cart {
 }
 
 const initialState: {
-  value: Cart[];
+  value: { items: Cart[]; isOpen: boolean };
 } = {
-  value: [],
+  value: { items: [], isOpen: false },
 };
 
 export const CartSlice = createAppSlice({
@@ -22,7 +22,7 @@ export const CartSlice = createAppSlice({
     addToCard: create.reducer((state, action: { payload: Cart }) => {
       const maxQty = action.payload.product.quantity;
       const CurrentState = current(state);
-      const cart = CurrentState.value.filter(
+      const cart = CurrentState.value.items.filter(
         (v) => v.product._id == action.payload.product._id
       );
 
@@ -33,9 +33,9 @@ export const CartSlice = createAppSlice({
           `${action.payload.quantity}  ${action.payload.product.name} added to a cart`
         );
 
-        state.value.push(action.payload);
+        state.value.items.push(action.payload);
       } else {
-        state.value = state.value.map((v) => {
+        state.value.items = state.value.items.map((v) => {
           console.log(v.product._id);
 
           if (v.product._id == action.payload.product._id) {
@@ -60,16 +60,41 @@ export const CartSlice = createAppSlice({
       }
     }),
     removeFromCart: create.reducer((state, action: { payload: Cart }) => {
-      state.value = state.value.filter(
+      state.value.items = state.value.items.filter(
         (v) => v.product._id != action.payload.product._id
       );
     }),
+    addQty: create.reducer(
+      (state, action: { payload: { index: number; prd: productsType } }) => {
+        const value = state.value.items[action.payload.index];
+        const maxQty = action.payload.prd.quantity;
+        if (value.quantity + 1 <= maxQty)
+          state.value.items[action.payload.index].quantity += 1;
+        else
+          alert(
+            `OUT OF STOCK [ONLY ${Math.abs(value.quantity - maxQty)} AVAILABLE]`
+          );
+      }
+    ),
+    subQty: create.reducer(
+      (state, action: { payload: { index: number; qty: number } }) => {
+        const value = state.value.items[action.payload.index];
+        if (action.payload.qty - 1 > 0) {
+          state.value.items[action.payload.index].quantity -= 1;
+        } else {
+          state.value.items = state.value.items.filter(
+            (v) => v.product._id != value.product._id
+          );
+        }
+      }
+    ),
   }),
   selectors: {
-    GetCart: (data) => data.value,
+    GetCart: (data) => data.value.items,
+    GetIsOpen: (data) => data.value.isOpen,
   },
 });
 
-export const { addToCard, removeFromCart } = CartSlice.actions;
+export const { addToCard, removeFromCart, addQty, subQty } = CartSlice.actions;
 
 export const { GetCart } = CartSlice.selectors;
