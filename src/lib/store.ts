@@ -2,11 +2,12 @@ import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { BrandSlice } from "./reducer/brandSlice.reducer";
 import { CartSlice } from "./reducer/CardSlice.reducer";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer, PersistConfig } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["CartSlice"],
 };
 const rootReducer = combineSlices(BrandSlice, CartSlice);
 const persistedReducer = persistReducer(persistConfig, rootReducer);
