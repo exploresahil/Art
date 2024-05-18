@@ -19,7 +19,7 @@ const Hero = () => {
     fetchData();
   }, []);
 
-  console.log("heroData->", data);
+  //console.log("heroData->", data);
 
   const names = {
     loadingName: "Workshop",

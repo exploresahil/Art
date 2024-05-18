@@ -1,4 +1,4 @@
-import { productsType } from "@/sanity/types/allTypes";
+import { productsType, workshopType } from "@/sanity/types/allTypes";
 import Image from "next/image";
 import Link from "next/link";
 import "./style.scss";

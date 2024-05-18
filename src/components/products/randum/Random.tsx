@@ -8,7 +8,7 @@ import { getProducts } from "@/sanity/sanity-utils";
 import { useAppSelector } from "@/src/lib/hook";
 import { selectBrand } from "@/src/lib/reducer/brandSlice.reducer";
 
-const Randum = () => {
+const Random = () => {
   const [data, setData] = useState<productsType[]>();
   const brand = useAppSelector(selectBrand);
 
@@ -36,4 +36,4 @@ const Randum = () => {
   );
 };
 
-export default Randum;
+export default Random;

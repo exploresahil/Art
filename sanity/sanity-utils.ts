@@ -6,6 +6,7 @@ import {
   footerType,
   muralHomeType,
   productsType,
+  workshopType,
 } from "./types/allTypes";
 import { heroType } from "./types/allTypes";
 import { socialType } from "./types/allTypes";
@@ -210,5 +211,32 @@ export async function getProductsBySlug(slug: string): Promise<productsType> {
     quantity,
   }`,
     { slug }
+  );
+}
+
+//*--------->
+//*-------------------> Workshop
+//*--------->
+
+export async function getWorkshops(): Promise<workshopType[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "workshops"] {
+    _id,
+    _createdAt,
+    name,
+    "slug": slug.current,
+    "bannerImage": bannerImage.asset->url,
+    dateTime,
+    quantity,
+    price,
+    description,
+    "afterWorkshop": afterWorkshop {
+      "images": images[] {
+        "_id": asset->_id,
+        "url": asset->url
+      },
+      description,
+    }
+  }`
   );
 }

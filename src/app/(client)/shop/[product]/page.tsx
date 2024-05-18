@@ -4,7 +4,7 @@ import { getProductsBySlug } from "@/sanity/sanity-utils";
 import { productsType } from "@/sanity/types/allTypes";
 import Description from "@/src/components/products/product/description/Description";
 import ProductHero from "@/src/components/products/product/hero/ProductHero";
-import Randum from "@/src/components/products/randum/Randum";
+import Random from "@/src/components/products/randum/Random";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -32,7 +32,7 @@ const page = ({ params }: Props) => {
     <>
       <ProductHero data={data} />
       <Description data={data} />
-      <Randum />
+      <Random />
     </>
   );
 };

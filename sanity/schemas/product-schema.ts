@@ -11,6 +11,7 @@ const productsSchema = {
       title: "Name",
       type: "string",
       description: "Enter Product Name",
+      validation: (val) => val.required(),
     }),
     defineField({
       name: "slug",
@@ -21,6 +22,7 @@ const productsSchema = {
         maxLength: 90,
       },
       description: "Click Generate to generate slug",
+      validation: (val) => val.required(),
     }),
     defineField({
       name: "category",
@@ -28,6 +30,7 @@ const productsSchema = {
       type: "reference",
       to: [{ type: "productCategory" }],
       description: "Select Category of the product",
+      validation: (val) => val.required(),
     }),
     defineField({
       name: "images",
@@ -58,6 +61,7 @@ const productsSchema = {
         }),
       ],
       description: "Enter description of the product",
+      validation: (val) => val.required(),
     }),
     defineField({
       name: "price",

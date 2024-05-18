@@ -76,3 +76,19 @@ export interface footerType extends commonAttributes {
   name: string;
   bgImage: string;
 }
+
+export interface workshopType extends commonAttributes {
+  slug: string;
+  bannerImage: string;
+  dateTime: string;
+  quantity: number;
+  price: number;
+  description: PortableTextBlock[];
+  afterWorkshop: {
+    images: {
+      _id: string;
+      url: string;
+    }[];
+    description: PortableTextBlock[];
+  };
+}

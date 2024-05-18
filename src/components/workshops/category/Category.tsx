@@ -10,7 +10,11 @@ interface CategoryProps {
   selectedCategory?: string;
 }
 
-const Category = ({ setSelectedCategory, selectedCategory }: CategoryProps) => {
+const Category = ({
+  setSelectedCategory,
+  selectedCategory,
+  loading,
+}: CategoryProps) => {
   return (
     <div id="workshopCategory">
       <div className="title-container">
@@ -18,17 +22,21 @@ const Category = ({ setSelectedCategory, selectedCategory }: CategoryProps) => {
       </div>
       <div className="buttons-container">
         <div className="all-buttons">
-          {data?.map((item, i) => (
-            <Button
-              key={i}
-              className={selectedCategory === item.title ? "selected" : ""}
-              onClick={() => {
-                setSelectedCategory(item.title);
-              }}
-            >
-              {item.title}
-            </Button>
-          ))}
+          {loading ? (
+            <Button className="loadingBtn">Loading...</Button>
+          ) : (
+            <>
+              {data?.map((item, i) => (
+                <Button
+                  key={i}
+                  onClick={() => setSelectedCategory(item.title)}
+                  className={selectedCategory === item.title ? "selected" : ""}
+                >
+                  {item.title}
+                </Button>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>
