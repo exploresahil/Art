@@ -5,4 +5,5 @@ import type { RootState, AppDispatch, AppStore } from "./store";
 export const useAppDispatch: () => AppDispatch =
   useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
-export const useAppStore: () => AppStore = useStore.withTypes<AppStore>();
+export const useAppStore: () => AppStore["store"] =
+  useStore.withTypes<AppStore["store"]>();
