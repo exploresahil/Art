@@ -127,7 +127,7 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
                     <Button>
                       <AiOutlineMinus />
                     </Button>
-                    <p>Qty: 2</p>
+                    <p>Qty: {item.quantity}</p>
                     <Button>
                       <AiOutlinePlus />
                     </Button>

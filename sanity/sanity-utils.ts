@@ -197,6 +197,7 @@ export async function getCartProducts(): Promise<productsType[]> {
 export async function getProductsBySlug(slug: string): Promise<productsType> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "products" && isAvailable == true && slug.current == $slug][0] {
+      _id,
     name,
     "slug": slug.current,
     "images": images[] {

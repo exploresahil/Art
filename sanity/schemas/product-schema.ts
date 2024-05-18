@@ -78,6 +78,7 @@ const productsSchema = {
       type: "number",
       description:
         "Enter total quantity of item or leave blank if only one item.",
+      initialValue: 1,
     }),
   ],
 };

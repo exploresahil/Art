@@ -104,7 +104,7 @@ const ProductHero = ({ data }: Props) => {
           <div className="title-container">
             <h2>{data?.name}</h2>
             <p>{data?.price && `₹${data.price}`}</p>
-            {data && data.quantity && (
+            {data && data.quantity !== 1 && (
               <div className="quantity-container">
                 <Button onClick={decCount}>
                   <AiOutlineMinus />
@@ -125,6 +125,7 @@ const ProductHero = ({ data }: Props) => {
                       quantity: count,
                     })
                   );
+                  setCount(1);
                 }}
               >
                 <BsFillBagPlusFill /> Cart
@@ -195,7 +196,7 @@ const ProductHero = ({ data }: Props) => {
 
               <h2>{data?.name}</h2>
               <p>{data?.price && `₹${data.price}`}</p>
-              {data && data.quantity && (
+              {data && data.quantity !== 1 && (
                 <div className="quantity-container">
                   <Button onClick={decCount}>
                     <AiOutlineMinus />
@@ -216,6 +217,7 @@ const ProductHero = ({ data }: Props) => {
                         quantity: count,
                       })
                     );
+                    setCount(1);
                   }}
                 >
                   <BsFillBagPlusFill /> Cart
