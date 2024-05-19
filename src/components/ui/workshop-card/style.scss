@@ -52,9 +52,9 @@
     }
   }
   h2 {
-    font-family: $roboto;
     font-size: 1.2rem;
-    padding: 10px 0;
+    padding: 10px 0 5px 0;
+    line-height: 1.1;
   }
 
   p {
@@ -71,7 +71,7 @@
 @media screen and (min-width: 820px) {
   #productCard {
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
   }
 }
@@ -91,7 +91,7 @@
     }
 
     h2 {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
     }
   }
 }

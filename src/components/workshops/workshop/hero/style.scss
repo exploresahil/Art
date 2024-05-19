@@ -37,8 +37,13 @@
         gap: 20px;
 
         .text {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
           h2 {
-            font-family: $roboto;
+            line-height: 1.1;
+            font-size: 1.5rem;
           }
 
           p {

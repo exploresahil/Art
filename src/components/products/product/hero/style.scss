@@ -106,7 +106,8 @@
       }
 
       h2 {
-        font-family: $roboto;
+        line-height: 1.1;
+        font-size: 1.5rem;
       }
 
       p {
@@ -195,8 +196,6 @@
         }
 
         h2 {
-          font-family: $playfare;
-          line-height: 1.1;
           font-size: 3rem;
           max-width: 60%;
         }
