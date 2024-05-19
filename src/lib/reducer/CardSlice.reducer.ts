@@ -1,11 +1,11 @@
 "use client";
 
-import { productsType } from "@/sanity/types/allTypes";
+import { productsType, workshopType } from "@/sanity/types/allTypes";
 import { createAppSlice } from "../crateAppSlice";
 import { current } from "@reduxjs/toolkit";
 
 export interface Cart {
-  product: productsType;
+  product: productsType | workshopType;
   quantity: number;
 }
 
@@ -67,7 +67,10 @@ export const CartSlice = createAppSlice({
       );
     }),
     addQty: create.reducer(
-      (state, action: { payload: { index: number; prd: productsType } }) => {
+      (
+        state,
+        action: { payload: { index: number; prd: productsType | workshopType } }
+      ) => {
         const value = state.value.items[action.payload.index];
         const maxQty = action.payload.prd.quantity;
         if (value.quantity + 1 <= maxQty)

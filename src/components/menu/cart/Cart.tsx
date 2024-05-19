@@ -122,7 +122,11 @@ const Cart = ({ setCartOpen, cartOpen }: Props) => {
               <div className="cart-item" key={i}>
                 <div className="img-container">
                   <Image
-                    src={item.product.images[0].url}
+                    src={
+                      "bannerImage" in item.product
+                        ? item.product.bannerImage
+                        : item.product.images[0].url
+                    }
                     alt="product image"
                     fill
                     sizes={ImageSize.cardSize}

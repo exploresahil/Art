@@ -8,6 +8,12 @@ import Button from "@/src/components/ui/Button/Button";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 import { BsFillBagPlusFill } from "react-icons/bs";
+import { useAppDispatch, useAppSelector } from "@/src/lib/hook";
+import {
+  GetCart,
+  addToCard,
+  toggleCartOpen,
+} from "@/src/lib/reducer/CardSlice.reducer";
 
 interface Props {
   data?: workshopType;
@@ -15,13 +21,18 @@ interface Props {
 
 const Hero = ({ data }: Props) => {
   const [count, setCount] = useState<number>(1);
-
+  const items = useAppSelector(GetCart);
+  const dispatch = useAppDispatch();
   const incCount = () => {
-    setCount(count + 1);
+    if (data && count < data.quantity) {
+      setCount(count + 1);
+    }
   };
 
   const decCount = () => {
-    setCount(count - 1);
+    if (count > 1) {
+      setCount(count - 1);
+    }
   };
 
   return (
@@ -55,8 +66,37 @@ const Hero = ({ data }: Props) => {
                   </Button>
                 </div>
                 <div className="buttons">
-                  <Button className="buyNow">Buy Now</Button>
-                  <Button className="buyNow">
+                  <Button
+                    className="buyNow"
+                    onClick={() => {
+                      dispatch(
+                        addToCard({
+                          product: data,
+                          quantity: count,
+                        })
+                      );
+                      const prdData = items.filter(
+                        (v) => v.product._id == data._id
+                      )[0];
+                      if (!prdData) dispatch(toggleCartOpen());
+                      else if (data.quantity !== prdData.quantity)
+                        dispatch(toggleCartOpen());
+                    }}
+                  >
+                    Buy Now
+                  </Button>
+                  <Button
+                    className="buyNow"
+                    onClick={() => {
+                      dispatch(
+                        addToCard({
+                          product: data,
+                          quantity: count,
+                        })
+                      );
+                      setCount(1);
+                    }}
+                  >
                     <BsFillBagPlusFill /> Cart
                   </Button>
                 </div>
