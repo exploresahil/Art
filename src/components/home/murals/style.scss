@@ -42,13 +42,14 @@
 
 @media screen and (min-width: 820px) {
   #murals {
+    height: 50vh;
     .text-container {
       h2 {
         font-size: 3.5rem;
       }
 
       #muralMore {
-        font-size: 2rem;
+        font-size: 1rem;
       }
     }
   }
@@ -58,6 +59,8 @@
 
 @media screen and (min-width: 1025px) {
   #murals {
+    height: 100vh;
+
     .text-container {
       h2 {
         font-size: 3.5rem;

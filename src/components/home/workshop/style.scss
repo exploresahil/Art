@@ -1,1 +1,85 @@
 @use "@/src/app/(client)/scss/variables" as *;
+
+#homeWorkshop {
+  width: 100vw;
+  max-width: 100%;
+  height: 80vh;
+  padding: 0 4vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .workshop-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .SliderMain {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+    }
+
+    .img-container {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    #workshopLink {
+      width: 100%;
+      padding: 10px 0;
+      border-radius: 5px;
+      display: grid;
+      place-content: center;
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #homeWorkshop {
+    height: 55vh;
+    .workshop-container {
+      h2 {
+        font-size: 2.4rem;
+      }
+      .SliderMain {
+        width: 100%;
+        aspect-ratio: 2 / 1;
+      }
+
+      .img-container {
+        aspect-ratio: 2 / 1;
+      }
+
+      #workshopLink {
+        width: fit-content;
+        padding: 10px 20px;
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #homeWorkshop {
+    height: 100vh;
+    padding: 0 20vw;
+  }
+}

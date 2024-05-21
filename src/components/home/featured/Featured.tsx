@@ -66,7 +66,7 @@ const Featured = () => {
           brand && brand.backgroundColor ? brand.backgroundColor : "#ffffff",
       }}
     >
-      <h2>Featured Products</h2>
+      <h2>Featured Categories</h2>
       <div className="category-slider">
         <Slider {...settings}>
           {data?.map((item, i) => (

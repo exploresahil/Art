@@ -26,6 +26,7 @@ const page = ({ params }: Props) => {
     }
     fetchData();
   }, []);
+
   //console.log("data-->", data);
 
   return (

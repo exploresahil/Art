@@ -2,6 +2,7 @@
 
 import { getWorkshopBySlug } from "@/sanity/sanity-utils";
 import { workshopType } from "@/sanity/types/allTypes";
+import Random from "@/src/components/products/randum/Random";
 import Description from "@/src/components/workshops/workshop/description/Description";
 import Hero from "@/src/components/workshops/workshop/hero/Hero";
 import { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ const page = ({ params }: Props) => {
     <>
       <Hero data={data} />
       <Description data={data} />
+      <Random />
     </>
   );
 };
